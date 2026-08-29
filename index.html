@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ATS Resume Builder</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- PDF Generator -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+
+<body>
+
+<header class="topbar">
+    <div class="logo">
+        ATS<span>Resume</span>
+    </div>
+
+    <div class="saved" id="saved">
+        ● Saved
+    </div>
+</header>
+
+
+<div class="layout">
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <h3>Build your resume</h3>
+
+        <button class="step active" data-page="personal">
+            <b>1</b>
+            <div>
+                <strong>Personal</strong>
+                <small>Contact information</small>
+            </div>
+        </button>
+
+        <button class="step" data-page="summary">
+            <b>2</b>
+            <div>
+                <strong>Summary</strong>
+                <small>Professional summary</small>
+            </div>
+        </button>
+
+        <button class="step" data-page="education">
+            <b>3</b>
+            <div>
+                <strong>Education</strong>
+                <small>Academic details</small>
+            </div>
+        </button>
+
+        <button class="step" data-page="skills">
+            <b>4</b>
+            <div>
+                <strong>Skills</strong>
+                <small>Technical skills</small>
+            </div>
+        </button>
+
+        <button class="step" data-page="projects">
+            <b>5</b>
+            <div>
+                <strong>Projects</strong>
+                <small>Projects</small>
+            </div>
+        </button>
+
+        <button class="step" data-page="experience">
+            <b>6</b>
+            <div>
+                <strong>Experience</strong>
+                <small>Work experience</small>
+            </div>
+        </button>
+
+        <button class="step" data-page="extras">
+            <b>7</b>
+            <div>
+                <strong>Extras</strong>
+                <small>Certificates</small>
+            </div>
+        </button>
+
+        <button class="step" data-page="review">
+            <b>8</b>
+            <div>
+                <strong>Review</strong>
+                <small>ATS check</small>
+            </div>
+        </button>
+
+    </aside>
+
+
+    <!-- ================= FORM ================= -->
+
+    <main class="form">
+
+
+        <!-- PERSONAL -->
+
+        <section class="page active" id="personal">
+
+            <div class="title">
+                <span>👤</span>
+
+                <div>
+                    <h1>Personal information</h1>
+                    <p>Let's start with your contact details.</p>
+                </div>
+            </div>
+
+
+            <div class="grid">
+
+                <div class="input full">
+
+                    <label>Full name *</label>
+
+                    <input
+                        id="name"
+                        placeholder="Your full name">
+
+                </div>
+
+
+                <div class="input">
+
+                    <label>Email *</label>
+
+                    <input
+                        id="email"
+                        type="email"
+                        placeholder="you@example.com">
+
+                </div>
+
+
+                <div class="input">
+
+                    <label>Phone *</label>
+
+                    <input
+                        id="phone"
+                        type="tel"
+                        placeholder="+91 9876543210">
+
+                </div>
+
+
+                <div class="input">
+
+                    <label>Location</label>
+
+                    <input
+                        id="location"
+                        placeholder="Palakkad, Kerala">
+
+                </div>
+
+
+                <div class="input">
+
+                    <label>LinkedIn</label>
+
+                    <input
+                        id="linkedin"
+                        placeholder="linkedin.com/in/username">
+
+                </div>
+
+
+                <div class="input">
+
+                    <label>GitHub</label>
+
+                    <input
+                        id="github"
+                        placeholder="github.com/username">
+
+                </div>
+
+            </div>
+
+
+            <div class="buttons">
+
+                <span></span>
+
+                <button
+                    class="next"
+                    data-next="summary">
+
+                    Continue →
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- SUMMARY -->
+
+        <section class="page" id="summary">
+
+            <div class="title">
+
+                <span>📝</span>
+
+                <div>
+
+                    <h1>Professional summary</h1>
+
+                    <p>
+                        Tell employers about your skills
+                        and career goals.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="input">
+
+                <label>Target role</label>
+
+                <input
+                    id="targetRole"
+                    placeholder="Example: Junior Web Developer">
+
+            </div>
+
+
+            <div class="input">
+
+                <label>Professional summary</label>
+
+                <textarea
+                    id="summaryText"
+                    placeholder="Example: Motivated BCA student with knowledge of HTML, CSS, JavaScript and C++. Interested in web development and software development."></textarea>
+
+                <div class="ai-summary-row">
+                    <button
+                        type="button"
+                        class="generate ai-summary-btn"
+                        id="generateSummary">
+                        ✨ Generate with AI
+                    </button>
+
+                    <span
+                        id="summaryAIStatus"
+                        class="ai-status"
+                        aria-live="polite">
+                    </span>
+                </div>
+
+                <small class="hint">
+                    AI uses your target role, education, skills, projects, experience and extras to create a concise ATS-friendly summary.
+                </small>
+
+            </div>
+
+
+            <div class="buttons">
+
+                <button
+                    class="back"
+                    data-back="personal">
+
+                    ← Back
+
+                </button>
+
+
+                <button
+                    class="next"
+                    data-next="education">
+
+                    Continue →
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- EDUCATION -->
+
+        <section class="page" id="education">
+
+            <div class="title">
+
+                <span>🎓</span>
+
+                <div>
+
+                    <h1>Education</h1>
+
+                    <p>
+                        Add your academic background.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div id="educationList"></div>
+
+
+            <button
+                class="add"
+                id="addEducation">
+
+                + Add Education
+
+            </button>
+
+
+            <div class="buttons">
+
+                <button
+                    class="back"
+                    data-back="summary">
+
+                    ← Back
+
+                </button>
+
+
+                <button
+                    class="next"
+                    data-next="skills">
+
+                    Continue →
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- SKILLS -->
+
+        <section class="page" id="skills">
+
+            <div class="title">
+
+                <span>⚡</span>
+
+                <div>
+
+                    <h1>Skills</h1>
+
+                    <p>
+                        Add skills relevant to your target role.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="input">
+
+                <label>
+                    Technical skills
+                </label>
+
+                <input
+                    id="skillInput"
+                    placeholder="HTML, CSS, JavaScript, C++, Java">
+
+            </div>
+
+
+            <div class="input">
+
+                <label>
+                    Tools & technologies
+                </label>
+
+                <input
+                    id="tools"
+                    placeholder="Git, GitHub, VS Code, MySQL">
+
+            </div>
+
+
+            <div class="input">
+
+                <label>
+                    Soft skills
+                </label>
+
+                <input
+                    id="softSkills"
+                    placeholder="Communication, teamwork, problem solving">
+
+            </div>
+
+
+            <div class="buttons">
+
+                <button
+                    class="back"
+                    data-back="education">
+
+                    ← Back
+
+                </button>
+
+
+                <button
+                    class="next"
+                    data-next="projects">
+
+                    Continue →
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- PROJECTS -->
+
+        <section class="page" id="projects">
+
+            <div class="title">
+
+                <span>🚀</span>
+
+                <div>
+
+                    <h1>Projects</h1>
+
+                    <p>
+                        Add projects you have built.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div id="projectList"></div>
+
+
+            <button
+                class="add"
+                id="addProject">
+
+                + Add Project
+
+            </button>
+
+
+            <div class="buttons">
+
+                <button
+                    class="back"
+                    data-back="skills">
+
+                    ← Back
+
+                </button>
+
+
+                <button
+                    class="next"
+                    data-next="experience">
+
+                    Continue →
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- EXPERIENCE -->
+
+        <section class="page" id="experience">
+
+            <div class="title">
+
+                <span>💼</span>
+
+                <div>
+
+                    <h1>Experience</h1>
+
+                    <p>
+                        No experience? Select fresher.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="experience-choice">
+
+                <button
+                    class="choice selected"
+                    id="fresher">
+
+                    I'm a fresher
+
+                </button>
+
+
+                <button
+                    class="choice"
+                    id="experienced">
+
+                    I have experience
+
+                </button>
+
+            </div>
+
+
+            <div
+                id="experienceForm"
+                class="hidden">
+
+
+                <div class="input">
+
+                    <label>Company</label>
+
+                    <input
+                        id="company"
+                        placeholder="Company name">
+
+                </div>
+
+
+                <div class="input">
+
+                    <label>Position</label>
+
+                    <input
+                        id="position"
+                        placeholder="Software Developer Intern">
+
+                </div>
+
+
+                <div class="grid">
+
+                    <div class="input">
+
+                        <label>Start date</label>
+
+                        <input
+                            id="startDate"
+                            placeholder="June 2025">
+
+                    </div>
+
+
+                    <div class="input">
+
+                        <label>End date</label>
+
+                        <input
+                            id="endDate"
+                            placeholder="August 2025">
+
+                    </div>
+
+                </div>
+
+
+                <div class="input">
+
+                    <label>
+                        Responsibilities
+                    </label>
+
+                    <textarea
+                        id="responsibilities"
+                        placeholder="Describe your responsibilities and achievements."></textarea>
+
+                </div>
+
+            </div>
+
+
+            <div class="buttons">
+
+                <button
+                    class="back"
+                    data-back="projects">
+
+                    ← Back
+
+                </button>
+
+
+                <button
+                    class="next"
+                    data-next="extras">
+
+                    Continue →
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- EXTRAS -->
+
+        <section class="page" id="extras">
+
+            <div class="title">
+
+                <span>🏆</span>
+
+                <div>
+
+                    <h1>Additional information</h1>
+
+                    <p>
+                        Add certificates and achievements.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="input">
+
+                <label>Certifications</label>
+
+                <textarea
+                    id="certifications"
+                    placeholder="Certificate name - Issuing organization"></textarea>
+
+            </div>
+
+
+            <div class="input">
+
+                <label>Achievements</label>
+
+                <textarea
+                    id="achievements"
+                    placeholder="Hackathon finalist&#10;Coding competition winner"></textarea>
+
+            </div>
+
+
+            <div class="input">
+
+                <label>Languages</label>
+
+                <input
+                    id="languages"
+                    placeholder="English, Malayalam, Hindi">
+
+            </div>
+
+
+            <div class="buttons">
+
+                <button
+                    class="back"
+                    data-back="experience">
+
+                    ← Back
+
+                </button>
+
+
+                <button
+                    class="next"
+                    data-next="review">
+
+                    Check Resume →
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- REVIEW -->
+
+        <section class="page" id="review">
+
+            <div class="title">
+
+                <span>✅</span>
+
+                <div>
+
+                    <h1>ATS Resume Check</h1>
+
+                    <p>
+                        Check your resume before downloading.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="score">
+
+                <div
+                    class="score-number"
+                    id="score">
+
+                    0%
+
+                </div>
+
+
+                <div>
+
+                    <h2 id="scoreText">
+                        Complete your information
+                    </h2>
+
+                    <p>
+                        Improve your resume by adding
+                        relevant information.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="warnings"
+                class="warnings">
+
+            </div>
+
+
+            <div class="resume-actions">
+
+                <button
+                    class="back"
+                    data-back="extras">
+
+                    ← Edit Resume
+
+                </button>
+
+
+                <button
+                    class="generate"
+                    id="generate">
+
+                    📄 Download ATS Resume
+
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- ================= PREVIEW ================= -->
+
+    <aside class="preview">
+
+        <div class="preview-head">
+
+            <strong>
+                ATS Preview
+            </strong>
+
+            <small>
+                Live preview
+            </small>
+
+        </div>
+
+
+        <div class="resume" id="resume">
+
+
+            <h1 id="pName">
+                Your Name
+            </h1>
+
+
+            <div class="p-contact">
+
+                <span id="pEmail">
+                    email@example.com
+                </span>
+
+                <span id="pPhone">
+                    Phone
+                </span>
+
+                <span id="pLocation">
+                    Location
+                </span>
+
+            </div>
+
+
+            <div class="links">
+
+                <span id="pLinkedin"></span>
+
+                <span id="pGithub"></span>
+
+            </div>
+
+
+
+            <section>
+
+                <h2>
+                    PROFESSIONAL SUMMARY
+                </h2>
+
+                <p id="pSummary">
+                    Your professional summary will appear here.
+                </p>
+
+            </section>
+
+
+
+            <section>
+
+                <h2>
+                    EDUCATION
+                </h2>
+
+                <div id="pEducation">
+                    Add your education.
+                </div>
+
+            </section>
+
+
+
+            <section>
+
+                <h2>
+                    SKILLS
+                </h2>
+
+                <p id="pSkills">
+                    Add your skills.
+                </p>
+
+            </section>
+
+
+
+            <section>
+
+                <h2>
+                    PROJECTS
+                </h2>
+
+                <div id="pProjects">
+                    Add your projects.
+                </div>
+
+            </section>
+
+
+
+            <section>
+
+                <h2>
+                    EXPERIENCE
+                </h2>
+
+                <div id="pExperience">
+                    Fresher
+                </div>
+
+            </section>
+
+
+
+            <section>
+
+                <h2>
+                    CERTIFICATIONS
+                </h2>
+
+                <p id="pCertifications">
+                    -
+                </p>
+
+            </section>
+
+
+
+            <section>
+
+                <h2>
+                    ACHIEVEMENTS
+                </h2>
+
+                <p id="pAchievements">
+                    -
+                </p>
+
+            </section>
+
+
+
+            <section>
+
+                <h2>
+                    LANGUAGES
+                </h2>
+
+                <p id="pLanguages">
+                    -
+                </p>
+
+            </section>
+
+
+        </div>
+
+    </aside>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
