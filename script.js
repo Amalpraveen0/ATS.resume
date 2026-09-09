@@ -9,42 +9,27 @@ let projectCount = 0;
 function showPage(page) {
 
     document.querySelectorAll(".page").forEach(section => {
-
         section.classList.remove("active");
-
     });
-
 
     const target =
         document.getElementById(page);
 
-
     if (target) {
-
         target.classList.add("active");
-
     }
 
-
     document.querySelectorAll(".step").forEach(step => {
-
         step.classList.remove("active");
-
-
         if (step.dataset.page === page) {
-
             step.classList.add("active");
-
         }
-
     });
-
 
     window.scrollTo({
         top: 0,
         behavior: "smooth"
     });
-
 
     updatePreview();
 
@@ -54,39 +39,27 @@ function showPage(page) {
 /* Continue buttons */
 
 document.querySelectorAll(".next").forEach(button => {
-
     button.addEventListener("click", () => {
-
         showPage(button.dataset.next);
-
     });
-
 });
 
 
 /* Back buttons */
 
 document.querySelectorAll(".back").forEach(button => {
-
     button.addEventListener("click", () => {
-
         showPage(button.dataset.back);
-
     });
-
 });
 
 
 /* Sidebar */
 
 document.querySelectorAll(".step").forEach(button => {
-
     button.addEventListener("click", () => {
-
         showPage(button.dataset.page);
-
     });
-
 });
 
 
@@ -95,20 +68,11 @@ document.querySelectorAll(".step").forEach(button => {
 ========================= */
 
 function value(id, fallback = "") {
-
-    const element =
-        document.getElementById(id);
-
-
+    const element = document.getElementById(id);
     if (!element) {
-
         return fallback;
-
     }
-
-
     return element.value.trim() || fallback;
-
 }
 
 
@@ -125,114 +89,49 @@ function addEducation() {
 
     educationCount++;
 
-
-    const card =
-        document.createElement("div");
-
-
-    card.className =
-        "education-card";
-
+    const card = document.createElement("div");
+    card.className = "education-card";
 
     card.innerHTML = `
-
         <div class="card-title">
-
-            <strong>
-                Education ${educationCount}
-            </strong>
-
-            <button class="remove">
-                Remove
-            </button>
-
+            <strong>Education ${educationCount}</strong>
+            <button class="remove">Remove</button>
         </div>
 
-
         <div class="grid">
-
             <div class="input">
-
-                <label>
-                    Degree / Course
-                </label>
-
-                <input
-                    class="eduDegree"
-                    placeholder="BCA">
-
+                <label>Degree / Course</label>
+                <input class="eduDegree" placeholder="BCA">
             </div>
 
-
             <div class="input">
-
-                <label>
-                    College / Institution
-                </label>
-
-                <input
-                    class="eduCollege"
-                    placeholder="Your College">
-
+                <label>College / Institution</label>
+                <input class="eduCollege" placeholder="Your College">
             </div>
 
-
             <div class="input">
-
-                <label>
-                    University
-                </label>
-
-                <input
-                    class="eduUniversity"
-                    placeholder="University">
-
+                <label>University</label>
+                <input class="eduUniversity" placeholder="University">
             </div>
 
-
             <div class="input">
-
-                <label>
-                    Graduation year
-                </label>
-
-                <input
-                    class="eduYear"
-                    placeholder="2027">
-
+                <label>Graduation year</label>
+                <input class="eduYear" placeholder="2027">
             </div>
 
-
             <div class="input">
-
-                <label>
-                    CGPA / Percentage
-                </label>
-
-                <input
-                    class="eduGrade"
-                    placeholder="8.2 CGPA">
-
+                <label>CGPA / Percentage</label>
+                <input class="eduGrade" placeholder="8.2 CGPA">
             </div>
-
         </div>
     `;
 
+    card.querySelector(".remove").addEventListener("click", () => {
+        card.remove();
+        updatePreview();
+    });
 
-    card
-        .querySelector(".remove")
-        .addEventListener("click", () => {
-
-            card.remove();
-
-            updatePreview();
-
-        });
-
-
-    document
-        .getElementById("educationList")
-        .appendChild(card);
+    document.getElementById("educationList").appendChild(card);
 
 }
 
@@ -250,85 +149,37 @@ function addProject() {
 
     projectCount++;
 
-
-    const card =
-        document.createElement("div");
-
-
-    card.className =
-        "project-card";
-
+    const card = document.createElement("div");
+    card.className = "project-card";
 
     card.innerHTML = `
-
         <div class="card-title">
-
-            <strong>
-                Project ${projectCount}
-            </strong>
-
-            <button class="remove">
-                Remove
-            </button>
-
+            <strong>Project ${projectCount}</strong>
+            <button class="remove">Remove</button>
         </div>
-
 
         <div class="input">
-
-            <label>
-                Project name
-            </label>
-
-            <input
-                class="projectName"
-                placeholder="Portfolio Website">
-
+            <label>Project name</label>
+            <input class="projectName" placeholder="Portfolio Website">
         </div>
-
 
         <div class="input">
-
-            <label>
-                Technologies
-            </label>
-
-            <input
-                class="projectTech"
-                placeholder="HTML, CSS, JavaScript">
-
+            <label>Technologies</label>
+            <input class="projectTech" placeholder="HTML, CSS, JavaScript">
         </div>
-
 
         <div class="input">
-
-            <label>
-                Project description
-            </label>
-
-            <textarea
-                class="projectDescription"
-                placeholder="Explain what you built and what you achieved."></textarea>
-
+            <label>Project description</label>
+            <textarea class="projectDescription" placeholder="Explain what you built and what you achieved."></textarea>
         </div>
-
     `;
 
+    card.querySelector(".remove").addEventListener("click", () => {
+        card.remove();
+        updatePreview();
+    });
 
-    card
-        .querySelector(".remove")
-        .addEventListener("click", () => {
-
-            card.remove();
-
-            updatePreview();
-
-        });
-
-
-    document
-        .getElementById("projectList")
-        .appendChild(card);
+    document.getElementById("projectList").appendChild(card);
 
 }
 
@@ -337,41 +188,25 @@ function addProject() {
    EXPERIENCE
 ========================= */
 
-const fresher =
-    document.getElementById("fresher");
-
-const experienced =
-    document.getElementById("experienced");
-
-const experienceForm =
-    document.getElementById("experienceForm");
+const fresher = document.getElementById("fresher");
+const experienced = document.getElementById("experienced");
+const experienceForm = document.getElementById("experienceForm");
 
 
 fresher.addEventListener("click", () => {
-
     fresher.classList.add("selected");
-
     experienced.classList.remove("selected");
-
     experienceForm.classList.add("hidden");
-
     updatePreview();
-
 });
 
 
 experienced.addEventListener("click", () => {
-
     experienced.classList.add("selected");
-
     fresher.classList.remove("selected");
-
     experienceForm.classList.remove("hidden");
-
     updatePreview();
-
 });
-
 
 
 /* =========================
@@ -379,47 +214,29 @@ experienced.addEventListener("click", () => {
 ========================= */
 
 function collectEducationForAI() {
-
-    return Array.from(
-        document.querySelectorAll(".education-card")
-    ).map(card => ({
+    return Array.from(document.querySelectorAll(".education-card")).map(card => ({
         degree: card.querySelector(".eduDegree")?.value.trim() || "",
         college: card.querySelector(".eduCollege")?.value.trim() || "",
         university: card.querySelector(".eduUniversity")?.value.trim() || "",
         year: card.querySelector(".eduYear")?.value.trim() || "",
         grade: card.querySelector(".eduGrade")?.value.trim() || ""
-    })).filter(item =>
-        Object.values(item).some(Boolean)
-    );
-
+    })).filter(item => Object.values(item).some(Boolean));
 }
 
 
 function collectProjectsForAI() {
-
-    return Array.from(
-        document.querySelectorAll(".project-card")
-    ).map(card => ({
+    return Array.from(document.querySelectorAll(".project-card")).map(card => ({
         name: card.querySelector(".projectName")?.value.trim() || "",
         technologies: card.querySelector(".projectTech")?.value.trim() || "",
         description: card.querySelector(".projectDescription")?.value.trim() || ""
-    })).filter(item =>
-        Object.values(item).some(Boolean)
-    );
-
+    })).filter(item => Object.values(item).some(Boolean));
 }
 
 
 function collectExperienceForAI() {
-
     if (fresher.classList.contains("selected")) {
-
-        return {
-            status: "Fresher"
-        };
-
+        return { status: "Fresher" };
     }
-
     return {
         status: "Experienced",
         company: value("company"),
@@ -428,145 +245,82 @@ function collectExperienceForAI() {
         endDate: value("endDate"),
         responsibilities: value("responsibilities")
     };
-
 }
 
 
 async function generateAISummary() {
 
-    const button =
-        document.getElementById("generateSummary");
-
-    const status =
-        document.getElementById("summaryAIStatus");
-
-    const summary =
-        document.getElementById("summaryText");
-
-    const userPromptField =
-        document.getElementById("userSummaryPrompt");
+    const button = document.getElementById("generateSummary");
+    const status = document.getElementById("summaryAIStatus");
+    const summary = document.getElementById("summaryText");
+    const userPromptField = document.getElementById("userSummaryPrompt");
 
     if (!button || !summary || !userPromptField) {
-
         return;
-
     }
 
-    const userInput =
-        userPromptField.value.trim();
+    const userInput = userPromptField.value.trim();
 
     if (!userInput) {
-
-        status.textContent =
-            "Describe yourself above first.";
-
-        status.className =
-            "ai-status error";
-
+        status.textContent = "Describe yourself above first.";
+        status.className = "ai-status error";
         return;
-
     }
 
     button.disabled = true;
-
-    button.textContent =
-        "⏳ Generating...";
-
-    status.textContent =
-        "Creating your ATS-friendly summary...";
-
-    status.className =
-        "ai-status";
+    button.textContent = "⏳ Generating...";
+    status.textContent = "Creating your ATS-friendly summary...";
+    status.className = "ai-status";
 
     try {
 
-        const response =
-            await fetch("/api/generate-summary", {
+        const response = await fetch("/api/generate-summary", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ userInput })
+        });
 
-                method: "POST",
-
-                headers: {
-                    "Content-Type": "application/json"
-                },
-
-                body: JSON.stringify({
-
-                    userInput
-
-                })
-
-            });
-
-        const data =
-            await response.json();
+        const data = await response.json();
 
         if (!response.ok) {
-
-            throw new Error(
-                data.error ||
-                "Could not generate summary."
-            );
-
+            throw new Error(data.error || "Could not generate summary.");
         }
 
         if (!data.summary) {
-
-            throw new Error(
-                "AI did not return a summary."
-            );
-
+            throw new Error("AI did not return a summary.");
         }
 
-        summary.value =
-            data.summary.trim();
+        summary.value = data.summary.trim();
 
         updatePreview();
-
         saveData();
 
-        status.textContent =
-            "✓ Summary generated successfully.";
-
-        status.className =
-            "ai-status success";
+        status.textContent = "✓ Summary generated successfully.";
+        status.className = "ai-status success";
 
     }
     catch (error) {
 
-        console.error(
-            "AI summary error:",
-            error
-        );
+        console.error("AI summary error:", error);
 
-        status.textContent =
-            "Could not generate summary. Check your API setup.";
-
-        status.className =
-            "ai-status error";
+        status.textContent = "Could not generate summary. Check your API setup.";
+        status.className = "ai-status error";
 
     }
     finally {
 
         button.disabled = false;
-
-        button.textContent =
-            "✨ Generate with AI";
+        button.textContent = "✨ Generate with AI";
 
     }
 
 }
 
 
-const generateSummaryButton =
-    document.getElementById("generateSummary");
+const generateSummaryButton = document.getElementById("generateSummary");
 
 if (generateSummaryButton) {
-
-    generateSummaryButton.addEventListener(
-        "click",
-        generateAISummary
-    );
-
+    generateSummaryButton.addEventListener("click", generateAISummary);
 }
 
 
@@ -575,11 +329,8 @@ if (generateSummaryButton) {
 ========================= */
 
 document.addEventListener("input", () => {
-
     updatePreview();
-
     saveData();
-
 });
 
 
@@ -589,291 +340,136 @@ document.addEventListener("input", () => {
 
 function updatePreview() {
 
-    document.getElementById("pName").textContent =
-        value("name", "Your Name");
-
-
-    document.getElementById("pEmail").textContent =
-        value("email", "email@example.com");
-
-
-    document.getElementById("pPhone").textContent =
-        value("phone", "Phone");
-
-
-    document.getElementById("pLocation").textContent =
-        value("location", "Location");
-
-
-    document.getElementById("pLinkedin").textContent =
-        value("linkedin", "");
-
-
-    document.getElementById("pGithub").textContent =
-        value("github", "");
-
+    document.getElementById("pName").textContent = value("name", "Your Name");
+    document.getElementById("pEmail").textContent = value("email", "email@example.com");
+    document.getElementById("pPhone").textContent = value("phone", "Phone");
+    document.getElementById("pLocation").textContent = value("location", "Location");
+    document.getElementById("pLinkedin").textContent = value("linkedin", "");
+    document.getElementById("pGithub").textContent = value("github", "");
 
     /* SUMMARY */
 
     document.getElementById("pSummary").textContent =
-        value(
-            "summaryText",
-            "Your professional summary will appear here."
-        );
-
+        value("summaryText", "Your professional summary will appear here.");
 
     /* EDUCATION */
 
-    const educationPreview =
-        document.getElementById("pEducation");
-
-
+    const educationPreview = document.getElementById("pEducation");
     educationPreview.innerHTML = "";
 
-
-    const educationCards =
-        document.querySelectorAll(".education-card");
-
+    const educationCards = document.querySelectorAll(".education-card");
 
     if (educationCards.length === 0) {
-
-        educationPreview.textContent =
-            "Add your education.";
-
+        educationPreview.textContent = "Add your education.";
     }
     else {
-
         educationCards.forEach(card => {
 
-            const degree =
-                card.querySelector(".eduDegree").value;
+            const degree = card.querySelector(".eduDegree").value;
+            const college = card.querySelector(".eduCollege").value;
+            const university = card.querySelector(".eduUniversity").value;
+            const year = card.querySelector(".eduYear").value;
+            const grade = card.querySelector(".eduGrade").value;
 
-            const college =
-                card.querySelector(".eduCollege").value;
-
-            const university =
-                card.querySelector(".eduUniversity").value;
-
-            const year =
-                card.querySelector(".eduYear").value;
-
-            const grade =
-                card.querySelector(".eduGrade").value;
-
-
-            const item =
-                document.createElement("div");
-
+            const item = document.createElement("div");
 
             item.innerHTML = `
-
-                <strong>
-                    ${degree || "Degree"}
-                </strong>
-
+                <strong>${degree || "Degree"}</strong>
                 <br>
-
                 ${college || "College"}
-
-                ${university
-                    ? " | " + university
-                    : ""}
-
-                ${year
-                    ? " | " + year
-                    : ""}
-
-                ${grade
-                    ? " | " + grade
-                    : ""}
-
+                ${university ? " | " + university : ""}
+                ${year ? " | " + year : ""}
+                ${grade ? " | " + grade : ""}
             `;
 
-
-            item.style.marginBottom =
-                "10px";
-
+            item.style.marginBottom = "10px";
 
             educationPreview.appendChild(item);
 
         });
-
     }
-
 
     /* SKILLS */
 
     const skills = value("skillInput");
-
     const tools = value("tools");
-
     const softSkills = value("softSkills");
-
 
     const skillParts = [];
 
-
-    if (skills) {
-
-        skillParts.push(skills);
-
-    }
-
-
-    if (tools) {
-
-        skillParts.push(tools);
-
-    }
-
-
-    if (softSkills) {
-
-        skillParts.push(softSkills);
-
-    }
-
+    if (skills) { skillParts.push(skills); }
+    if (tools) { skillParts.push(tools); }
+    if (softSkills) { skillParts.push(softSkills); }
 
     document.getElementById("pSkills").textContent =
-        skillParts.length
-            ? skillParts.join(", ")
-            : "Add your skills.";
-
+        skillParts.length ? skillParts.join(", ") : "Add your skills.";
 
     /* PROJECTS */
 
-    const projectsPreview =
-        document.getElementById("pProjects");
-
-
+    const projectsPreview = document.getElementById("pProjects");
     projectsPreview.innerHTML = "";
 
-
-    const projects =
-        document.querySelectorAll(".project-card");
-
+    const projects = document.querySelectorAll(".project-card");
 
     if (projects.length === 0) {
-
-        projectsPreview.textContent =
-            "Add your projects.";
-
+        projectsPreview.textContent = "Add your projects.";
     }
     else {
-
         projects.forEach(card => {
 
-            const name =
-                card.querySelector(".projectName").value;
+            const name = card.querySelector(".projectName").value;
+            const tech = card.querySelector(".projectTech").value;
+            const description = card.querySelector(".projectDescription").value;
 
-            const tech =
-                card.querySelector(".projectTech").value;
-
-            const description =
-                card.querySelector(".projectDescription").value;
-
-
-            const item =
-                document.createElement("div");
-
+            const item = document.createElement("div");
 
             item.innerHTML = `
-
-                <strong>
-                    ${name || "Project"}
-                </strong>
-
-                ${
-                    tech
-                    ? `<br><b>Technologies:</b> ${tech}`
-                    : ""
-                }
-
-                ${
-                    description
-                    ? `<br>${description}`
-                    : ""
-                }
-
+                <strong>${name || "Project"}</strong>
+                ${tech ? `<br><b>Technologies:</b> ${tech}` : ""}
+                ${description ? `<br>${description}` : ""}
             `;
 
-
-            item.style.marginBottom =
-                "12px";
-
+            item.style.marginBottom = "12px";
 
             projectsPreview.appendChild(item);
 
         });
-
     }
-
 
     /* EXPERIENCE */
 
-    const experiencePreview =
-        document.getElementById("pExperience");
-
+    const experiencePreview = document.getElementById("pExperience");
 
     if (fresher.classList.contains("selected")) {
-
-        experiencePreview.textContent =
-            "Fresher";
-
+        experiencePreview.textContent = "Fresher";
     }
     else {
-
         experiencePreview.innerHTML = `
-
-            <strong>
-                ${value("position", "Position")}
-            </strong>
-
+            <strong>${value("position", "Position")}</strong>
             <br>
-
             ${value("company", "Company")}
-
             <br>
-
             ${value("startDate")}
-
-            ${
-                value("endDate")
-                ? " - " + value("endDate")
-                : ""
-            }
-
+            ${value("endDate") ? " - " + value("endDate") : ""}
             <br>
-
             ${value("responsibilities")}
-
         `;
-
     }
-
 
     /* CERTIFICATIONS */
 
-    document
-        .getElementById("pCertifications")
-        .textContent =
-            value("certifications", "-");
-
+    document.getElementById("pCertifications").textContent =
+        value("certifications", "-");
 
     /* ACHIEVEMENTS */
 
-    document
-        .getElementById("pAchievements")
-        .textContent =
-            value("achievements", "-");
-
+    document.getElementById("pAchievements").textContent =
+        value("achievements", "-");
 
     /* LANGUAGES */
 
-    document
-        .getElementById("pLanguages")
-        .textContent =
-            value("languages", "-");
+    document.getElementById("pLanguages").textContent =
+        value("languages", "-");
 
 }
 
@@ -885,209 +481,56 @@ function updatePreview() {
 function runATSCheck() {
 
     let score = 0;
-
     const warnings = [];
 
+    if (value("name")) { score += 10; }
+    else { warnings.push("❌ Add your full name."); }
 
-    /* NAME */
+    if (value("email")) { score += 10; }
+    else { warnings.push("❌ Add your email."); }
 
-    if (value("name")) {
+    if (value("phone")) { score += 10; }
+    else { warnings.push("❌ Add your phone number."); }
 
-        score += 10;
+    if (value("summaryText").length >= 30) { score += 15; }
+    else { warnings.push("⚠️ Add a stronger professional summary."); }
 
-    }
-    else {
+    if (document.querySelectorAll(".education-card").length > 0) { score += 15; }
+    else { warnings.push("❌ Add at least one education entry."); }
 
-        warnings.push(
-            "❌ Add your full name."
-        );
+    if (value("skillInput") || value("tools")) { score += 15; }
+    else { warnings.push("⚠️ Add technical skills."); }
 
-    }
+    if (document.querySelectorAll(".project-card").length > 0) { score += 10; }
+    else { warnings.push("⚠️ Add at least one project."); }
 
+    if (value("certifications") || value("achievements")) { score += 15; }
+    else { warnings.push("💡 Consider adding certifications or achievements."); }
 
-    /* EMAIL */
-
-    if (value("email")) {
-
-        score += 10;
-
-    }
-    else {
-
-        warnings.push(
-            "❌ Add your email."
-        );
-
-    }
-
-
-    /* PHONE */
-
-    if (value("phone")) {
-
-        score += 10;
-
-    }
-    else {
-
-        warnings.push(
-            "❌ Add your phone number."
-        );
-
-    }
-
-
-    /* SUMMARY */
-
-    if (
-        value("summaryText").length >= 30
-    ) {
-
-        score += 15;
-
-    }
-    else {
-
-        warnings.push(
-            "⚠️ Add a stronger professional summary."
-        );
-
-    }
-
-
-    /* EDUCATION */
-
-    if (
-        document.querySelectorAll(
-            ".education-card"
-        ).length > 0
-    ) {
-
-        score += 15;
-
-    }
-    else {
-
-        warnings.push(
-            "❌ Add at least one education entry."
-        );
-
-    }
-
-
-    /* SKILLS */
-
-    if (
-        value("skillInput") ||
-        value("tools")
-    ) {
-
-        score += 15;
-
-    }
-    else {
-
-        warnings.push(
-            "⚠️ Add technical skills."
-        );
-
-    }
-
-
-    /* PROJECTS */
-
-    if (
-        document.querySelectorAll(
-            ".project-card"
-        ).length > 0
-    ) {
-
-        score += 10;
-
-    }
-    else {
-
-        warnings.push(
-            "⚠️ Add at least one project."
-        );
-
-    }
-
-
-    /* EXTRAS */
-
-    if (
-        value("certifications") ||
-        value("achievements")
-    ) {
-
-        score += 15;
-
-    }
-    else {
-
-        warnings.push(
-            "💡 Consider adding certifications or achievements."
-        );
-
-    }
-
-
-    document.getElementById("score").textContent =
-        score + "%";
-
+    document.getElementById("score").textContent = score + "%";
 
     if (score >= 80) {
-
-        document.getElementById("scoreText").textContent =
-            "Excellent ATS readiness!";
-
+        document.getElementById("scoreText").textContent = "Excellent ATS readiness!";
     }
     else if (score >= 60) {
-
-        document.getElementById("scoreText").textContent =
-            "Good, but you can improve it.";
-
+        document.getElementById("scoreText").textContent = "Good, but you can improve it.";
     }
     else {
-
-        document.getElementById("scoreText").textContent =
-            "Your resume needs more information.";
-
+        document.getElementById("scoreText").textContent = "Your resume needs more information.";
     }
 
-
-    const warningBox =
-        document.getElementById("warnings");
-
-
+    const warningBox = document.getElementById("warnings");
     warningBox.innerHTML = "";
 
-
     warnings.forEach(message => {
-
-        const div =
-            document.createElement("div");
-
-
-        div.className =
-            "warning";
-
-
-        div.textContent =
-            message;
-
-
+        const div = document.createElement("div");
+        div.className = "warning";
+        div.textContent = message;
         warningBox.appendChild(div);
-
     });
 
-
     if (warnings.length === 0) {
-
-        warningBox.innerHTML =
-            '<div class="good">✓ No major issues found.</div>';
-
+        warningBox.innerHTML = '<div class="good">✓ No major issues found.</div>';
     }
 
 }
@@ -1100,13 +543,9 @@ function runATSCheck() {
 document
     .querySelector('[data-next="review"]')
     .addEventListener("click", () => {
-
         setTimeout(() => {
-
             runATSCheck();
-
         }, 100);
-
     });
 
 
@@ -1118,29 +557,15 @@ function saveData() {
 
     const data = {};
 
+    document.querySelectorAll("input, textarea").forEach(input => {
+        if (input.id) {
+            data[input.id] = input.value;
+        }
+    });
 
-    document
-        .querySelectorAll("input, textarea")
-        .forEach(input => {
+    localStorage.setItem("atsResumeData", JSON.stringify(data));
 
-            if (input.id) {
-
-                data[input.id] =
-                    input.value;
-
-            }
-
-        });
-
-
-    localStorage.setItem(
-        "atsResumeData",
-        JSON.stringify(data)
-    );
-
-
-    document.getElementById("saved").textContent =
-        "● Saved";
+    document.getElementById("saved").textContent = "● Saved";
 
 }
 
@@ -1151,49 +576,27 @@ function saveData() {
 
 function loadData() {
 
-    const saved =
-        localStorage.getItem(
-            "atsResumeData"
-        );
-
+    const saved = localStorage.getItem("atsResumeData");
 
     if (!saved) {
-
         return;
-
     }
-
 
     try {
 
-        const data =
-            JSON.parse(saved);
-
+        const data = JSON.parse(saved);
 
         Object.keys(data).forEach(key => {
-
-            const input =
-                document.getElementById(key);
-
-
+            const input = document.getElementById(key);
             if (input) {
-
-                input.value =
-                    data[key];
-
+                input.value = data[key];
             }
-
         });
 
     }
     catch (error) {
-
-        console.log(
-            "Saved data could not be loaded."
-        );
-
+        console.log("Saved data could not be loaded.");
     }
-
 
     updatePreview();
 
@@ -1208,39 +611,50 @@ document
     .getElementById("generate")
     .addEventListener("click", () => {
 
-
         updatePreview();
-
         runATSCheck();
 
+        const resume = document.getElementById("resume");
 
-        const resume =
-            document.getElementById("resume");
-
-
-        const name =
-            value(
-                "name",
-                "Resume"
-            )
-            .replace(
-                /[^a-zA-Z0-9]/g,
-                "_"
-            );
-
+        const name = value("name", "Resume").replace(/[^a-zA-Z0-9]/g, "_");
 
         const options = {
 
-            margin: [
-                0.4,
-                0.5,
-                0.4,
-                0.5
-            ],
+            margin: [0.4, 0.5, 0.4, 0.5],
 
-            filename:
-                `${name}_ATS_Resume.pdf`,
+            filename: `${name}_ATS_Resume.pdf`,
 
             image: {
+                type: "jpeg",
+                quality: 1
+            },
 
-         
+            html2canvas: {
+                scale: 2,
+                useCORS: true
+            },
+
+            jsPDF: {
+                unit: "in",
+                format: "a4",
+                orientation: "portrait"
+            },
+
+            pagebreak: {
+                mode: ["avoid-all", "css", "legacy"]
+            }
+
+        };
+
+        html2pdf().set(options).from(resume).save();
+
+    });
+
+
+/* =========================
+   START
+========================= */
+
+loadData();
+
+updatePreview();
