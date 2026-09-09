@@ -443,48 +443,22 @@ async function generateAISummary() {
     const summary =
         document.getElementById("summaryText");
 
-    if (!button || !summary) {
+    const userPromptField =
+        document.getElementById("userSummaryPrompt");
+
+    if (!button || !summary || !userPromptField) {
 
         return;
 
     }
 
-    const targetRole =
-        value("targetRole");
+    const userInput =
+        userPromptField.value.trim();
 
-    const education =
-        collectEducationForAI();
-
-    const skills = {
-        technical: value("skillInput"),
-        tools: value("tools"),
-        soft: value("softSkills")
-    };
-
-    const projects =
-        collectProjectsForAI();
-
-    const experience =
-        collectExperienceForAI();
-
-    const extras = {
-        certifications: value("certifications"),
-        achievements: value("achievements"),
-        languages: value("languages")
-    };
-
-    const hasDetails =
-        targetRole ||
-        education.length ||
-        Object.values(skills).some(Boolean) ||
-        projects.length ||
-        Object.values(experience).some(Boolean) ||
-        Object.values(extras).some(Boolean);
-
-    if (!hasDetails) {
+    if (!userInput) {
 
         status.textContent =
-            "Add some resume details first.";
+            "Describe yourself above first.";
 
         status.className =
             "ai-status error";
@@ -517,12 +491,7 @@ async function generateAISummary() {
 
                 body: JSON.stringify({
 
-                    targetRole,
-                    education,
-                    skills,
-                    experience,
-                    projects,
-                    extras
+                    userInput
 
                 })
 
@@ -1274,76 +1243,4 @@ document
 
             image: {
 
-                type: "jpeg",
-
-                quality: 1
-
-            },
-
-            html2canvas: {
-
-                scale: 2,
-
-                useCORS: true
-
-            },
-
-            jsPDF: {
-
-                unit: "in",
-
-                format: "a4",
-
-                orientation: "portrait"
-
-            },
-
-            pagebreak: {
-
-                mode: [
-                    "avoid-all",
-                    "css",
-                    "legacy"
-                ]
-
-            }
-
-        };
-
-
-        html2pdf()
-
-            .set(options)
-
-            .from(resume)
-
-            .save();
-
-    });
-
-
-/* =========================
-   START
-========================= */
-
-loadData();
-
-updatePreview();
-
-document.querySelectorAll(".next").forEach(button => {
-
-    button.addEventListener("click", async () => {
-
-        const nextPage = button.dataset.next;
-
-        if (nextPage === "review") {
-
-            await generateAIResume();
-
-        }
-
-        showPage(nextPage);
-
-    });
-
-});
+         
